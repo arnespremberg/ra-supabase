@@ -1,4 +1,4 @@
-import { AuthProvider, UserIdentity } from 'ra-core';
+import { AuthProvider, UserIdentity } from 'react-admin';
 import { SupabaseClient, User } from '@supabase/supabase-js';
 
 export const supabaseAuthProvider = (
