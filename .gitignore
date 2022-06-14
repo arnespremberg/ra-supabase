@@ -7,11 +7,11 @@ node_modules
 coverage
 
 # production
-build
-lib
-esm
-es6
-dist
+# build
+# lib
+# esm
+# es6
+# dist
 
 # misc
 .DS_Store
