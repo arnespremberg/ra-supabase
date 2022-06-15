@@ -2,8 +2,7 @@ import * as React from 'react';
 import { OnFailure, OnSuccess, useTranslate } from 'ra-core';
 import { Field, Form } from 'react-final-form';
 import { Button, CardActions, CircularProgress } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import { ClassesOverride } from 'ra-ui-materialui';
+import { makeStyles } from '@mui/styles';
 import { useSetPassword, useSupabaseAccessToken } from 'ra-supabase-core';
 import { Input } from './Input';
 
