@@ -3,6 +3,7 @@ import { AuthContext } from 'ra-core';
 import { renderWithRedux } from 'ra-test';
 import { waitFor } from '@testing-library/react';
 import { Router } from 'react-router';
+import { unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
 import { createMemoryHistory } from 'history';
 import {
     useRedirectIfAuthenticated,
@@ -35,11 +36,11 @@ describe('useRedirectIfAuthenticated', () => {
         const push = jest.spyOn(history, 'push');
 
         renderWithRedux(
-            <Router history={history}>
+            <HistoryRouter history={history}>
                 <AuthContext.Provider value={authProvider}>
                     <UseRedirectIfAuthenticated />
                 </AuthContext.Provider>
-            </Router>
+            </HistoryRouter>
         );
 
         expect(authProvider.checkAuth).toHaveBeenCalled();
@@ -61,11 +62,11 @@ describe('useRedirectIfAuthenticated', () => {
         const push = jest.spyOn(history, 'push');
 
         renderWithRedux(
-            <Router history={history}>
+            <HistoryRouter history={history} >
                 <AuthContext.Provider value={authProvider}>
                     <UseRedirectIfAuthenticated />
                 </AuthContext.Provider>
-            </Router>
+            </HistoryRouter>
         );
 
         expect(authProvider.checkAuth).toHaveBeenCalled();
@@ -87,11 +88,11 @@ describe('useRedirectIfAuthenticated', () => {
         const push = jest.spyOn(history, 'push');
 
         renderWithRedux(
-            <Router history={history}>
+            <HistoryRouter history={history}>
                 <AuthContext.Provider value={authProvider}>
                     <UseRedirectIfAuthenticated redirectTo="/dashboard" />
                 </AuthContext.Provider>
-            </Router>
+            </HistoryRouter>
         );
 
         expect(authProvider.checkAuth).toHaveBeenCalled();

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { renderWithRedux } from 'ra-test';
 import { waitFor } from '@testing-library/react';
-import { Router } from 'react-router';
+import { unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
 import { createMemoryHistory } from 'history';
 import {
     useSupabaseAccessToken,
@@ -26,9 +26,9 @@ describe('useSupabaseAccessToken', () => {
         });
 
         const { queryByText } = renderWithRedux(
-            <Router history={history}>
+            <HistoryRouter history={history}>
                 <UseSupabaseAccessToken />
-            </Router>
+            </HistoryRouter>
         );
 
         await waitFor(() => {
@@ -47,9 +47,9 @@ describe('useSupabaseAccessToken', () => {
         });
 
         const { queryByText } = renderWithRedux(
-            <Router history={history}>
+            <HistoryRouter history={history}>
                 <UseSupabaseAccessToken parameterName="my_token" />
-            </Router>
+            </HistoryRouter>
         );
 
         await waitFor(() => {
@@ -64,9 +64,9 @@ describe('useSupabaseAccessToken', () => {
         });
 
         renderWithRedux(
-            <Router history={history}>
+            <HistoryRouter history={history}>
                 <UseSupabaseAccessToken />
-            </Router>
+            </HistoryRouter>
         );
 
         await waitFor(() => {
@@ -81,9 +81,9 @@ describe('useSupabaseAccessToken', () => {
         });
 
         renderWithRedux(
-            <Router history={history}>
+            <HistoryRouter history={history}>
                 <UseSupabaseAccessToken redirectTo="/login" />
-            </Router>
+            </HistoryRouter>
         );
 
         await waitFor(() => {
@@ -98,9 +98,9 @@ describe('useSupabaseAccessToken', () => {
         });
 
         renderWithRedux(
-            <Router history={history}>
+            <HistoryRouter history={history}>
                 <UseSupabaseAccessToken redirectTo={false} />
-            </Router>
+            </HistoryRouter>
         );
 
         await waitFor(() => {
