@@ -1,5 +1,4 @@
 import {
-    OnFailure,
     OnSuccess,
     useAuthProvider,
     useNotify,
@@ -40,7 +39,7 @@ export const useSetPassword = (options?: UseSetPasswordOptions) => {
 
     const {
         onSuccess = () => redirect('/'),
-        onFailure = error => notify(error.message, 'error'),
+        onFailure = error => notify(error.message),
     } = options || {};
 
     return (params: SetPasswordParams) => {
@@ -58,6 +57,8 @@ export const useSetPassword = (options?: UseSetPasswordOptions) => {
             });
     };
 };
+
+export type OnFailure = (error?: any) => void;
 
 export type UseSetPasswordOptions = {
     onSuccess?: OnSuccess;
