@@ -31,14 +31,16 @@ export const LoginForm = () => {
                     : typeof error === 'undefined' || !error.message
                     ? 'ra.auth.sign_in_error'
                     : error.message,
-                'warning',
                 {
-                    _:
-                        typeof error === 'string'
-                            ? error
-                            : error && error.message
-                            ? error.message
-                            : undefined,
+                    type: 'warning',
+                    messageArgs: {
+                        _:
+                            typeof error === 'string'
+                                ? error
+                                : error && error.message
+                                ? error.message
+                                : undefined,
+                    }
                 }
             );
         });
