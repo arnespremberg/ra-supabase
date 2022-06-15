@@ -39,7 +39,7 @@ export const useSetPassword = (options?: UseSetPasswordOptions) => {
 
     const {
         onSuccess = () => redirect('/'),
-        onFailure = error => notify(error.message),
+        onFailure = error => notify(error.message, { type: 'error' }),
     } = options || {};
 
     return (params: SetPasswordParams) => {
