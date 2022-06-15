@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useLogin, useNotify, useTranslate } from 'ra-core';
 import { Field, Form } from 'react-final-form';
 import { Button, CardActions, CircularProgress } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 import { Input } from './Input';
 export var LoginForm = function () {
     var classes = useStyles();
@@ -25,12 +25,15 @@ export var LoginForm = function () {
                 ? error
                 : typeof error === 'undefined' || !error.message
                     ? 'ra.auth.sign_in_error'
-                    : error.message, 'warning', {
-                _: typeof error === 'string'
-                    ? error
-                    : error && error.message
-                        ? error.message
-                        : undefined,
+                    : error.message, {
+                type: 'warning',
+                messageArgs: {
+                    _: typeof error === 'string'
+                        ? error
+                        : error && error.message
+                            ? error.message
+                            : undefined,
+                }
             });
         });
     };

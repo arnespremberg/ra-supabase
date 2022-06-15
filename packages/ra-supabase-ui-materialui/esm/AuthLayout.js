@@ -24,8 +24,8 @@ import React, { createElement, useRef, useEffect, useMemo, } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Card, Avatar } from '@material-ui/core';
-import { createTheme, makeStyles } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { makeStyles } from '@mui/styles';
 import LockIcon from '@material-ui/icons/Lock';
 import { defaultTheme, Notification } from 'ra-ui-materialui';
 /**
@@ -47,14 +47,19 @@ import { defaultTheme, Notification } from 'ra-ui-materialui';
  *     );
  */
 export var AuthLayout = function (props) {
-    var theme = props.theme, title = props.title, classesOverride = props.classes, className = props.className, children = props.children, notification = props.notification, staticContext = props.staticContext, backgroundImage = props.backgroundImage, rest = __rest(props, ["theme", "title", "classes", "className", "children", "notification", "staticContext", "backgroundImage"]);
-    var containerRef = useRef(null);
-    var classes = useStyles(props);
+    var theme = props.theme, title = props.title, classesOverride = props.classes, className = props.className, children = props.children, notification = props.notification, backgroundImage = props.backgroundImage, rest = __rest(props, ["theme", "title", "classes", "className", "children", "notification", "backgroundImage"]);
     var muiTheme = useMemo(function () { return createTheme(theme); }, [theme]);
+    return (React.createElement(ThemeProvider, { theme: muiTheme },
+        React.createElement(AuthCard, __assign({}, props))));
+};
+export var AuthCard = function (props) {
+    var theme = props.theme, title = props.title, classesOverride = props.classes, className = props.className, children = props.children, notification = props.notification, backgroundImage = props.backgroundImage, rest = __rest(props, ["theme", "title", "classes", "className", "children", "notification", "backgroundImage"]);
+    var classes = useStyles(props);
+    var containerRef = useRef(null);
     var backgroundImageLoaded = false;
     var updateBackgroundImage = function () {
         if (!backgroundImageLoaded && containerRef.current) {
-            containerRef.current.style.backgroundImage = "url(" + backgroundImage + ")";
+            containerRef.current.style.backgroundImage = "url(".concat(backgroundImage, ")");
             backgroundImageLoaded = true;
         }
     };
@@ -71,14 +76,13 @@ export var AuthLayout = function (props) {
             lazyLoadBackgroundImage();
         }
     });
-    return (React.createElement(ThemeProvider, { theme: muiTheme },
-        React.createElement("div", __assign({ className: classnames(classes.main, className) }, rest, { ref: containerRef }),
-            React.createElement(Card, { className: classes.card },
-                React.createElement("div", { className: classes.avatar },
-                    React.createElement(Avatar, { className: classes.icon },
-                        React.createElement(LockIcon, null))),
-                children),
-            notification ? createElement(notification) : null)));
+    return (React.createElement("div", __assign({ className: classnames(classes.main, className) }, rest, { ref: containerRef }),
+        React.createElement(Card, { className: classes.card },
+            React.createElement("div", { className: classes.avatar },
+                React.createElement(Avatar, { className: classes.icon },
+                    React.createElement(LockIcon, null))),
+            children),
+        notification ? createElement(notification) : null));
 };
 AuthLayout.propTypes = {
     backgroundImage: PropTypes.string,
@@ -86,7 +90,6 @@ AuthLayout.propTypes = {
     classes: PropTypes.object,
     className: PropTypes.string,
     theme: PropTypes.object,
-    staticContext: PropTypes.object,
 };
 AuthLayout.defaultProps = {
     theme: defaultTheme,

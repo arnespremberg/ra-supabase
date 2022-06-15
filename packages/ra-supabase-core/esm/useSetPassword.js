@@ -29,7 +29,7 @@ export var useSetPassword = function (options) {
     var notify = useNotify();
     var redirect = useRedirect();
     var authProvider = useAuthProvider();
-    var _a = options || {}, _b = _a.onSuccess, onSuccess = _b === void 0 ? function () { return redirect('/'); } : _b, _c = _a.onFailure, onFailure = _c === void 0 ? function (error) { return notify(error.message, 'error'); } : _c;
+    var _a = options || {}, _b = _a.onSuccess, onSuccess = _b === void 0 ? function () { return redirect('/'); } : _b, _c = _a.onFailure, onFailure = _c === void 0 ? function (error) { return notify(error.message, { type: 'error' }); } : _c;
     return function (params) {
         authProvider
             .setPassword(params)

@@ -128,12 +128,12 @@ var supabaseAuthProvider = function (client, _a) {
                     // Users have reset their password and must set a new one
                     if (access_token && type === 'recovery') {
                         // eslint-disable-next-line no-throw-literal
-                        throw new CheckAuthError('Users have reset their password and must set a new one', "set-password?access_token=" + access_token);
+                        throw new CheckAuthError('Users have reset their password and must set a new one', "set-password?access_token=".concat(access_token));
                     }
                     // Users have have been invited and must set their password
                     if (access_token && type === 'invite') {
                         // eslint-disable-next-line no-throw-literal
-                        throw new CheckAuthError('Users have have been invited and must set their password', "set-password?access_token=" + access_token);
+                        throw new CheckAuthError('Users have have been invited and must set their password', "set-password?access_token=".concat(access_token));
                     }
                     if (client.auth.session() == null) {
                         throw new Error();

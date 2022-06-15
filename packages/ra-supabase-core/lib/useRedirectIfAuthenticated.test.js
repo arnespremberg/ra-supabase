@@ -1,7 +1,11 @@
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -59,13 +63,13 @@ var React = __importStar(require("react"));
 var ra_core_1 = require("ra-core");
 var ra_test_1 = require("ra-test");
 var react_1 = require("@testing-library/react");
-var react_router_1 = require("react-router");
+var react_router_dom_1 = require("react-router-dom");
 var history_1 = require("history");
 var useRedirectIfAuthenticated_1 = require("./useRedirectIfAuthenticated");
 describe('useRedirectIfAuthenticated', function () {
     var UseRedirectIfAuthenticated = function (_a) {
         var redirectTo = _a.redirectTo;
-        useRedirectIfAuthenticated_1.useRedirectIfAuthenticated(redirectTo);
+        (0, useRedirectIfAuthenticated_1.useRedirectIfAuthenticated)(redirectTo);
         return null;
     };
     test('should not redirect users if they are not authenticated', function () { return __awaiter(void 0, void 0, void 0, function () {
@@ -83,13 +87,13 @@ describe('useRedirectIfAuthenticated', function () {
                         getPermissions: jest.fn(),
                         setPassword: jest.fn(),
                     };
-                    history = history_1.createMemoryHistory({ initialEntries: ['/login'] });
+                    history = (0, history_1.createMemoryHistory)({ initialEntries: ['/login'] });
                     push = jest.spyOn(history, 'push');
-                    ra_test_1.renderWithRedux(React.createElement(react_router_1.Router, { history: history },
+                    (0, ra_test_1.renderWithRedux)(React.createElement(react_router_dom_1.unstable_HistoryRouter, { history: history },
                         React.createElement(ra_core_1.AuthContext.Provider, { value: authProvider },
                             React.createElement(UseRedirectIfAuthenticated, null))));
                     expect(authProvider.checkAuth).toHaveBeenCalled();
-                    return [4 /*yield*/, react_1.waitFor(function () {
+                    return [4 /*yield*/, (0, react_1.waitFor)(function () {
                             expect(push).toHaveBeenCalledTimes(0);
                         })];
                 case 1:
@@ -111,13 +115,13 @@ describe('useRedirectIfAuthenticated', function () {
                         getPermissions: jest.fn(),
                         setPassword: jest.fn(),
                     };
-                    history = history_1.createMemoryHistory({ initialEntries: ['/login'] });
+                    history = (0, history_1.createMemoryHistory)({ initialEntries: ['/login'] });
                     push = jest.spyOn(history, 'push');
-                    ra_test_1.renderWithRedux(React.createElement(react_router_1.Router, { history: history },
+                    (0, ra_test_1.renderWithRedux)(React.createElement(react_router_dom_1.unstable_HistoryRouter, { history: history },
                         React.createElement(ra_core_1.AuthContext.Provider, { value: authProvider },
                             React.createElement(UseRedirectIfAuthenticated, null))));
                     expect(authProvider.checkAuth).toHaveBeenCalled();
-                    return [4 /*yield*/, react_1.waitFor(function () {
+                    return [4 /*yield*/, (0, react_1.waitFor)(function () {
                             expect(push).toHaveBeenCalledWith('/');
                         })];
                 case 1:
@@ -139,13 +143,13 @@ describe('useRedirectIfAuthenticated', function () {
                         getPermissions: jest.fn(),
                         setPassword: jest.fn(),
                     };
-                    history = history_1.createMemoryHistory({ initialEntries: ['/login'] });
+                    history = (0, history_1.createMemoryHistory)({ initialEntries: ['/login'] });
                     push = jest.spyOn(history, 'push');
-                    ra_test_1.renderWithRedux(React.createElement(react_router_1.Router, { history: history },
+                    (0, ra_test_1.renderWithRedux)(React.createElement(react_router_dom_1.unstable_HistoryRouter, { history: history },
                         React.createElement(ra_core_1.AuthContext.Provider, { value: authProvider },
                             React.createElement(UseRedirectIfAuthenticated, { redirectTo: "/dashboard" }))));
                     expect(authProvider.checkAuth).toHaveBeenCalled();
-                    return [4 /*yield*/, react_1.waitFor(function () {
+                    return [4 /*yield*/, (0, react_1.waitFor)(function () {
                             expect(push).toHaveBeenCalledWith('/dashboard');
                         })];
                 case 1:

@@ -16,13 +16,13 @@ var react_router_1 = require("react-router");
  **/
 var useRedirectIfAuthenticated = function (redirectTo) {
     if (redirectTo === void 0) { redirectTo = '/'; }
-    var history = react_router_1.useHistory();
-    var checkAuth = ra_core_1.useCheckAuth();
-    react_1.useEffect(function () {
+    var navigate = (0, react_router_1.useNavigate)();
+    var checkAuth = (0, ra_core_1.useCheckAuth)();
+    (0, react_1.useEffect)(function () {
         checkAuth({}, false)
             .then(function () {
             // already authenticated, redirect to the home page
-            history.push(redirectTo);
+            navigate(redirectTo);
         })
             .catch(function () {
             // not authenticated, stay on the login page

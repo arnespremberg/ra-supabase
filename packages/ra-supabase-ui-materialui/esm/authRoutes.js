@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { RouteWithoutLayout } from 'ra-core';
+import { CustomRoutes } from 'ra-core';
+import { Route } from 'react-router';
 import { SetPasswordPage } from './SetPasswordPage';
 export var authRoutes = [
-    React.createElement(RouteWithoutLayout, { noLayout: true, path: "/set-password", render: function () { return React.createElement(SetPasswordPage, null); } }),
+    React.createElement(CustomRoutes, { noLayout: true },
+        React.createElement(Route, { element: React.createElement(SetPasswordPage, null), path: "/set-password" }))
 ];

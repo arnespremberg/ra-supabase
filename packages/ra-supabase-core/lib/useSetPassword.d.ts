@@ -1,4 +1,4 @@
-import { OnFailure, OnSuccess } from 'ra-core';
+import { OnSuccess } from 'ra-core';
 import { SetPasswordParams } from './authProvider';
 /**
  * This hook returns a function to call in order to set a user password on Supabase.
@@ -27,6 +27,7 @@ import { SetPasswordParams } from './authProvider';
  * };
  **/
 export declare const useSetPassword: (options?: UseSetPasswordOptions) => (params: SetPasswordParams) => void;
+export declare type OnFailure = (error?: any) => void;
 export declare type UseSetPasswordOptions = {
     onSuccess?: OnSuccess;
     onFailure?: OnFailure;

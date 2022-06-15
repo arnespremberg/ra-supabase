@@ -38,7 +38,7 @@ import * as React from 'react';
 import { AuthContext } from 'ra-core';
 import { renderWithRedux } from 'ra-test';
 import { waitFor } from '@testing-library/react';
-import { Router } from 'react-router';
+import { unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
 import { createMemoryHistory } from 'history';
 import { useRedirectIfAuthenticated, } from './useRedirectIfAuthenticated';
 describe('useRedirectIfAuthenticated', function () {
@@ -64,7 +64,7 @@ describe('useRedirectIfAuthenticated', function () {
                     };
                     history = createMemoryHistory({ initialEntries: ['/login'] });
                     push = jest.spyOn(history, 'push');
-                    renderWithRedux(React.createElement(Router, { history: history },
+                    renderWithRedux(React.createElement(HistoryRouter, { history: history },
                         React.createElement(AuthContext.Provider, { value: authProvider },
                             React.createElement(UseRedirectIfAuthenticated, null))));
                     expect(authProvider.checkAuth).toHaveBeenCalled();
@@ -92,7 +92,7 @@ describe('useRedirectIfAuthenticated', function () {
                     };
                     history = createMemoryHistory({ initialEntries: ['/login'] });
                     push = jest.spyOn(history, 'push');
-                    renderWithRedux(React.createElement(Router, { history: history },
+                    renderWithRedux(React.createElement(HistoryRouter, { history: history },
                         React.createElement(AuthContext.Provider, { value: authProvider },
                             React.createElement(UseRedirectIfAuthenticated, null))));
                     expect(authProvider.checkAuth).toHaveBeenCalled();
@@ -120,7 +120,7 @@ describe('useRedirectIfAuthenticated', function () {
                     };
                     history = createMemoryHistory({ initialEntries: ['/login'] });
                     push = jest.spyOn(history, 'push');
-                    renderWithRedux(React.createElement(Router, { history: history },
+                    renderWithRedux(React.createElement(HistoryRouter, { history: history },
                         React.createElement(AuthContext.Provider, { value: authProvider },
                             React.createElement(UseRedirectIfAuthenticated, { redirectTo: "/dashboard" }))));
                     expect(authProvider.checkAuth).toHaveBeenCalled();

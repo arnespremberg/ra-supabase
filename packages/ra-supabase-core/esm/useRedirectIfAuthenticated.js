@@ -1,6 +1,6 @@
 import { useCheckAuth } from 'ra-core';
 import { useEffect } from 'react';
-import { useHistory } from 'react-router';
+import { useNavigate } from "react-router";
 /**
  * This hook redirect the user to the provided path (/ by default) if they are authenticated.
  *
@@ -13,13 +13,13 @@ import { useHistory } from 'react-router';
  **/
 export var useRedirectIfAuthenticated = function (redirectTo) {
     if (redirectTo === void 0) { redirectTo = '/'; }
-    var history = useHistory();
+    var navigate = useNavigate();
     var checkAuth = useCheckAuth();
     useEffect(function () {
         checkAuth({}, false)
             .then(function () {
             // already authenticated, redirect to the home page
-            history.push(redirectTo);
+            navigate(redirectTo);
         })
             .catch(function () {
             // not authenticated, stay on the login page

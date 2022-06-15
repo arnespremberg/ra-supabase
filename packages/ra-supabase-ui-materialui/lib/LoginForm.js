@@ -1,7 +1,11 @@
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -24,13 +28,13 @@ var React = __importStar(require("react"));
 var ra_core_1 = require("ra-core");
 var react_final_form_1 = require("react-final-form");
 var core_1 = require("@material-ui/core");
-var styles_1 = require("@material-ui/core/styles");
+var styles_1 = require("@mui/styles");
 var Input_1 = require("./Input");
 var LoginForm = function () {
     var classes = useStyles();
-    var login = ra_core_1.useLogin();
-    var notify = ra_core_1.useNotify();
-    var translate = ra_core_1.useTranslate();
+    var login = (0, ra_core_1.useLogin)();
+    var notify = (0, ra_core_1.useNotify)();
+    var translate = (0, ra_core_1.useTranslate)();
     var validate = function (values) {
         var errors = { email: undefined, password: undefined };
         if (!values.email) {
@@ -47,12 +51,15 @@ var LoginForm = function () {
                 ? error
                 : typeof error === 'undefined' || !error.message
                     ? 'ra.auth.sign_in_error'
-                    : error.message, 'warning', {
-                _: typeof error === 'string'
-                    ? error
-                    : error && error.message
-                        ? error.message
-                        : undefined,
+                    : error.message, {
+                type: 'warning',
+                messageArgs: {
+                    _: typeof error === 'string'
+                        ? error
+                        : error && error.message
+                            ? error.message
+                            : undefined,
+                }
             });
         });
     };
@@ -73,7 +80,7 @@ var LoginForm = function () {
         } }));
 };
 exports.LoginForm = LoginForm;
-var useStyles = styles_1.makeStyles(function (theme) { return ({
+var useStyles = (0, styles_1.makeStyles)(function (theme) { return ({
     form: {
         padding: '0 1em 1em 1em',
     },

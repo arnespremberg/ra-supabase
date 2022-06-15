@@ -1,5 +1,5 @@
 import React, { HtmlHTMLAttributes, ComponentType, ReactNode } from 'react';
-import { StaticContext } from 'react-router';
+import { Theme } from '@mui/material/styles';
 import { TitleComponent } from 'ra-core';
 /**
  * A standalone login page, to serve as authentication gate to the admin
@@ -20,14 +20,18 @@ import { TitleComponent } from 'ra-core';
  *     );
  */
 export declare const AuthLayout: React.FunctionComponent<LoginProps>;
+export declare const AuthCard: (props: any) => JSX.Element;
 export interface LoginProps extends Omit<HtmlHTMLAttributes<HTMLDivElement>, 'title'> {
     backgroundImage?: string;
     children?: ReactNode;
     classes?: object;
     className?: string;
     notification?: ComponentType;
-    staticContext?: StaticContext;
     theme?: object;
     title?: TitleComponent;
+}
+declare module '@mui/styles/defaultTheme' {
+    interface DefaultTheme extends Theme {
+    }
 }
 //# sourceMappingURL=AuthLayout.d.ts.map

@@ -270,7 +270,7 @@ var getList = function (_a) {
                             ? resourceOptions
                             : resourceOptions.fullTextSearchFields;
                         fullTextSearchFields.forEach(function (field) {
-                            query = query.ilike(field, "%" + q + "%");
+                            query = query.ilike(field, "%".concat(q, "%"));
                         });
                     }
                     return [4 /*yield*/, query];

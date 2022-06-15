@@ -1,7 +1,11 @@
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -58,12 +62,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = __importStar(require("react"));
 var ra_test_1 = require("ra-test");
 var react_1 = require("@testing-library/react");
-var react_router_1 = require("react-router");
+var react_router_dom_1 = require("react-router-dom");
 var history_1 = require("history");
 var useSupabaseAccessToken_1 = require("./useSupabaseAccessToken");
 describe('useSupabaseAccessToken', function () {
     var UseSupabaseAccessToken = function (props) {
-        var token = useSupabaseAccessToken_1.useSupabaseAccessToken(props);
+        var token = (0, useSupabaseAccessToken_1.useSupabaseAccessToken)(props);
         return React.createElement("span", null, token);
     };
     test('should return the access token if present in the URL', function () { return __awaiter(void 0, void 0, void 0, function () {
@@ -72,12 +76,12 @@ describe('useSupabaseAccessToken', function () {
             switch (_a.label) {
                 case 0:
                     window.history.pushState({}, 'React Admin', '/set-password?access_token=bazinga');
-                    history = history_1.createMemoryHistory({
+                    history = (0, history_1.createMemoryHistory)({
                         initialEntries: ['/set-password'],
                     });
-                    queryByText = ra_test_1.renderWithRedux(React.createElement(react_router_1.Router, { history: history },
+                    queryByText = (0, ra_test_1.renderWithRedux)(React.createElement(react_router_dom_1.unstable_HistoryRouter, { history: history },
                         React.createElement(UseSupabaseAccessToken, null))).queryByText;
-                    return [4 /*yield*/, react_1.waitFor(function () {
+                    return [4 /*yield*/, (0, react_1.waitFor)(function () {
                             expect(queryByText('bazinga')).not.toBeNull();
                         })];
                 case 1:
@@ -92,12 +96,12 @@ describe('useSupabaseAccessToken', function () {
             switch (_a.label) {
                 case 0:
                     window.history.pushState({}, 'React Admin', '/set-password?my_token=bazinga');
-                    history = history_1.createMemoryHistory({
+                    history = (0, history_1.createMemoryHistory)({
                         initialEntries: ['/set-password'],
                     });
-                    queryByText = ra_test_1.renderWithRedux(React.createElement(react_router_1.Router, { history: history },
+                    queryByText = (0, ra_test_1.renderWithRedux)(React.createElement(react_router_dom_1.unstable_HistoryRouter, { history: history },
                         React.createElement(UseSupabaseAccessToken, { parameterName: "my_token" }))).queryByText;
-                    return [4 /*yield*/, react_1.waitFor(function () {
+                    return [4 /*yield*/, (0, react_1.waitFor)(function () {
                             expect(queryByText('bazinga')).not.toBeNull();
                         })];
                 case 1:
@@ -112,12 +116,12 @@ describe('useSupabaseAccessToken', function () {
             switch (_a.label) {
                 case 0:
                     window.history.pushState({}, 'React Admin', '/set-password');
-                    history = history_1.createMemoryHistory({
+                    history = (0, history_1.createMemoryHistory)({
                         initialEntries: ['/set-password'],
                     });
-                    ra_test_1.renderWithRedux(React.createElement(react_router_1.Router, { history: history },
+                    (0, ra_test_1.renderWithRedux)(React.createElement(react_router_dom_1.unstable_HistoryRouter, { history: history },
                         React.createElement(UseSupabaseAccessToken, null)));
-                    return [4 /*yield*/, react_1.waitFor(function () {
+                    return [4 /*yield*/, (0, react_1.waitFor)(function () {
                             expect(history.location.pathname).toEqual('/');
                         })];
                 case 1:
@@ -132,12 +136,12 @@ describe('useSupabaseAccessToken', function () {
             switch (_a.label) {
                 case 0:
                     window.history.pushState({}, 'React Admin', '/set-password');
-                    history = history_1.createMemoryHistory({
+                    history = (0, history_1.createMemoryHistory)({
                         initialEntries: ['/set-password'],
                     });
-                    ra_test_1.renderWithRedux(React.createElement(react_router_1.Router, { history: history },
+                    (0, ra_test_1.renderWithRedux)(React.createElement(react_router_dom_1.unstable_HistoryRouter, { history: history },
                         React.createElement(UseSupabaseAccessToken, { redirectTo: "/login" })));
-                    return [4 /*yield*/, react_1.waitFor(function () {
+                    return [4 /*yield*/, (0, react_1.waitFor)(function () {
                             expect(history.location.pathname).toEqual('/login');
                         })];
                 case 1:
@@ -152,12 +156,12 @@ describe('useSupabaseAccessToken', function () {
             switch (_a.label) {
                 case 0:
                     window.history.pushState({}, 'React Admin', '/set-password');
-                    history = history_1.createMemoryHistory({
+                    history = (0, history_1.createMemoryHistory)({
                         initialEntries: ['/set-password'],
                     });
-                    ra_test_1.renderWithRedux(React.createElement(react_router_1.Router, { history: history },
+                    (0, ra_test_1.renderWithRedux)(React.createElement(react_router_dom_1.unstable_HistoryRouter, { history: history },
                         React.createElement(UseSupabaseAccessToken, { redirectTo: false })));
-                    return [4 /*yield*/, react_1.waitFor(function () {
+                    return [4 /*yield*/, (0, react_1.waitFor)(function () {
                             expect(history.location.pathname).toEqual('/set-password');
                         })];
                 case 1:

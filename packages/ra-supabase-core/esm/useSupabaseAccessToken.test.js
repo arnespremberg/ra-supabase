@@ -37,7 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 import * as React from 'react';
 import { renderWithRedux } from 'ra-test';
 import { waitFor } from '@testing-library/react';
-import { Router } from 'react-router';
+import { unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
 import { createMemoryHistory } from 'history';
 import { useSupabaseAccessToken, } from './useSupabaseAccessToken';
 describe('useSupabaseAccessToken', function () {
@@ -54,7 +54,7 @@ describe('useSupabaseAccessToken', function () {
                     history = createMemoryHistory({
                         initialEntries: ['/set-password'],
                     });
-                    queryByText = renderWithRedux(React.createElement(Router, { history: history },
+                    queryByText = renderWithRedux(React.createElement(HistoryRouter, { history: history },
                         React.createElement(UseSupabaseAccessToken, null))).queryByText;
                     return [4 /*yield*/, waitFor(function () {
                             expect(queryByText('bazinga')).not.toBeNull();
@@ -74,7 +74,7 @@ describe('useSupabaseAccessToken', function () {
                     history = createMemoryHistory({
                         initialEntries: ['/set-password'],
                     });
-                    queryByText = renderWithRedux(React.createElement(Router, { history: history },
+                    queryByText = renderWithRedux(React.createElement(HistoryRouter, { history: history },
                         React.createElement(UseSupabaseAccessToken, { parameterName: "my_token" }))).queryByText;
                     return [4 /*yield*/, waitFor(function () {
                             expect(queryByText('bazinga')).not.toBeNull();
@@ -94,7 +94,7 @@ describe('useSupabaseAccessToken', function () {
                     history = createMemoryHistory({
                         initialEntries: ['/set-password'],
                     });
-                    renderWithRedux(React.createElement(Router, { history: history },
+                    renderWithRedux(React.createElement(HistoryRouter, { history: history },
                         React.createElement(UseSupabaseAccessToken, null)));
                     return [4 /*yield*/, waitFor(function () {
                             expect(history.location.pathname).toEqual('/');
@@ -114,7 +114,7 @@ describe('useSupabaseAccessToken', function () {
                     history = createMemoryHistory({
                         initialEntries: ['/set-password'],
                     });
-                    renderWithRedux(React.createElement(Router, { history: history },
+                    renderWithRedux(React.createElement(HistoryRouter, { history: history },
                         React.createElement(UseSupabaseAccessToken, { redirectTo: "/login" })));
                     return [4 /*yield*/, waitFor(function () {
                             expect(history.location.pathname).toEqual('/login');
@@ -134,7 +134,7 @@ describe('useSupabaseAccessToken', function () {
                     history = createMemoryHistory({
                         initialEntries: ['/set-password'],
                     });
-                    renderWithRedux(React.createElement(Router, { history: history },
+                    renderWithRedux(React.createElement(HistoryRouter, { history: history },
                         React.createElement(UseSupabaseAccessToken, { redirectTo: false })));
                     return [4 /*yield*/, waitFor(function () {
                             expect(history.location.pathname).toEqual('/set-password');

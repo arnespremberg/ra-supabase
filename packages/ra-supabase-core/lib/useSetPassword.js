@@ -29,10 +29,10 @@ var ra_core_1 = require("ra-core");
  * };
  **/
 var useSetPassword = function (options) {
-    var notify = ra_core_1.useNotify();
-    var redirect = ra_core_1.useRedirect();
-    var authProvider = ra_core_1.useAuthProvider();
-    var _a = options || {}, _b = _a.onSuccess, onSuccess = _b === void 0 ? function () { return redirect('/'); } : _b, _c = _a.onFailure, onFailure = _c === void 0 ? function (error) { return notify(error.message, 'error'); } : _c;
+    var notify = (0, ra_core_1.useNotify)();
+    var redirect = (0, ra_core_1.useRedirect)();
+    var authProvider = (0, ra_core_1.useAuthProvider)();
+    var _a = options || {}, _b = _a.onSuccess, onSuccess = _b === void 0 ? function () { return redirect('/'); } : _b, _c = _a.onFailure, onFailure = _c === void 0 ? function (error) { return notify(error.message, { type: 'error' }); } : _c;
     return function (params) {
         authProvider
             .setPassword(params)

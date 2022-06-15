@@ -12,7 +12,11 @@ var __assign = (this && this.__assign) || function () {
 };
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -44,13 +48,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AuthLayout = void 0;
+exports.AuthCard = exports.AuthLayout = void 0;
 var react_1 = __importStar(require("react"));
 var prop_types_1 = __importDefault(require("prop-types"));
 var classnames_1 = __importDefault(require("classnames"));
 var core_1 = require("@material-ui/core");
-var styles_1 = require("@material-ui/core/styles");
-var styles_2 = require("@material-ui/styles");
+var styles_1 = require("@mui/material/styles");
+var styles_2 = require("@mui/styles");
 var Lock_1 = __importDefault(require("@material-ui/icons/Lock"));
 var ra_ui_materialui_1 = require("ra-ui-materialui");
 /**
@@ -72,14 +76,20 @@ var ra_ui_materialui_1 = require("ra-ui-materialui");
  *     );
  */
 var AuthLayout = function (props) {
-    var theme = props.theme, title = props.title, classesOverride = props.classes, className = props.className, children = props.children, notification = props.notification, staticContext = props.staticContext, backgroundImage = props.backgroundImage, rest = __rest(props, ["theme", "title", "classes", "className", "children", "notification", "staticContext", "backgroundImage"]);
-    var containerRef = react_1.useRef(null);
+    var theme = props.theme, title = props.title, classesOverride = props.classes, className = props.className, children = props.children, notification = props.notification, backgroundImage = props.backgroundImage, rest = __rest(props, ["theme", "title", "classes", "className", "children", "notification", "backgroundImage"]);
+    var muiTheme = (0, react_1.useMemo)(function () { return (0, styles_1.createTheme)(theme); }, [theme]);
+    return (react_1.default.createElement(styles_1.ThemeProvider, { theme: muiTheme },
+        react_1.default.createElement(exports.AuthCard, __assign({}, props))));
+};
+exports.AuthLayout = AuthLayout;
+var AuthCard = function (props) {
+    var theme = props.theme, title = props.title, classesOverride = props.classes, className = props.className, children = props.children, notification = props.notification, backgroundImage = props.backgroundImage, rest = __rest(props, ["theme", "title", "classes", "className", "children", "notification", "backgroundImage"]);
     var classes = useStyles(props);
-    var muiTheme = react_1.useMemo(function () { return styles_1.createTheme(theme); }, [theme]);
+    var containerRef = (0, react_1.useRef)(null);
     var backgroundImageLoaded = false;
     var updateBackgroundImage = function () {
         if (!backgroundImageLoaded && containerRef.current) {
-            containerRef.current.style.backgroundImage = "url(" + backgroundImage + ")";
+            containerRef.current.style.backgroundImage = "url(".concat(backgroundImage, ")");
             backgroundImageLoaded = true;
         }
     };
@@ -91,34 +101,32 @@ var AuthLayout = function (props) {
             img.src = backgroundImage;
         }
     };
-    react_1.useEffect(function () {
+    (0, react_1.useEffect)(function () {
         if (!backgroundImageLoaded) {
             lazyLoadBackgroundImage();
         }
     });
-    return (react_1.default.createElement(styles_2.ThemeProvider, { theme: muiTheme },
-        react_1.default.createElement("div", __assign({ className: classnames_1.default(classes.main, className) }, rest, { ref: containerRef }),
-            react_1.default.createElement(core_1.Card, { className: classes.card },
-                react_1.default.createElement("div", { className: classes.avatar },
-                    react_1.default.createElement(core_1.Avatar, { className: classes.icon },
-                        react_1.default.createElement(Lock_1.default, null))),
-                children),
-            notification ? react_1.createElement(notification) : null)));
+    return (react_1.default.createElement("div", __assign({ className: (0, classnames_1.default)(classes.main, className) }, rest, { ref: containerRef }),
+        react_1.default.createElement(core_1.Card, { className: classes.card },
+            react_1.default.createElement("div", { className: classes.avatar },
+                react_1.default.createElement(core_1.Avatar, { className: classes.icon },
+                    react_1.default.createElement(Lock_1.default, null))),
+            children),
+        notification ? (0, react_1.createElement)(notification) : null));
 };
-exports.AuthLayout = AuthLayout;
+exports.AuthCard = AuthCard;
 exports.AuthLayout.propTypes = {
     backgroundImage: prop_types_1.default.string,
     children: prop_types_1.default.node,
     classes: prop_types_1.default.object,
     className: prop_types_1.default.string,
     theme: prop_types_1.default.object,
-    staticContext: prop_types_1.default.object,
 };
 exports.AuthLayout.defaultProps = {
     theme: ra_ui_materialui_1.defaultTheme,
     notification: ra_ui_materialui_1.Notification,
 };
-var useStyles = styles_1.makeStyles(function (theme) { return ({
+var useStyles = (0, styles_2.makeStyles)(function (theme) { return ({
     main: {
         display: 'flex',
         flexDirection: 'column',

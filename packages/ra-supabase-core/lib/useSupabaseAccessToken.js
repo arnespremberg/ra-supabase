@@ -32,10 +32,10 @@ var react_1 = require("react");
  **/
 var useSupabaseAccessToken = function (_a) {
     var _b = _a === void 0 ? {} : _a, _c = _b.redirectTo, redirectTo = _c === void 0 ? '/' : _c, _d = _b.parameterName, parameterName = _d === void 0 ? 'access_token' : _d;
-    var redirect = ra_core_1.useRedirect();
+    var redirect = (0, ra_core_1.useRedirect)();
     var urlSearchParams = new URLSearchParams(window.location.search.substr(1));
     var access_token = urlSearchParams.get(parameterName);
-    react_1.useEffect(function () {
+    (0, react_1.useEffect)(function () {
         if (access_token == null) {
             if (redirectTo !== false) {
                 redirect(redirectTo);
