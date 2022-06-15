@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { OnFailure, OnSuccess, useTranslate } from 'ra-core';
+import { OnSuccess, useTranslate } from 'ra-core';
 import { Field, Form } from 'react-final-form';
 import { Button, CardActions, CircularProgress } from '@material-ui/core';
 import { makeStyles } from '@mui/styles';
@@ -92,6 +92,11 @@ export const SetPasswordForm = (props: SetPasswordFormProps) => {
         />
     );
 };
+
+export type OnFailure = (error?: any) => void;
+export type ClassesOverride<
+    UseStyles extends (props: any) => Record<string, string>
+> = Partial<Record<keyof ReturnType<UseStyles>, string>>;
 
 export type SetPasswordFormProps = {
     classes?: ClassesOverride<typeof useStyles>;

@@ -10,11 +10,9 @@ import React, {
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Card, Avatar } from '@material-ui/core';
-// import { createTheme } from '@material-ui/core/styles';
 import { createTheme, ThemeProvider, Theme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 import LockIcon from '@material-ui/icons/Lock';
-// import { StaticContext } from 'react-router';
 
 import { TitleComponent } from 'ra-core';
 import { defaultTheme, Notification } from 'ra-ui-materialui';
@@ -45,7 +43,6 @@ export const AuthLayout: React.FunctionComponent<LoginProps> = props => {
         className,
         children,
         notification,
-        // staticContext,
         backgroundImage,
         ...rest
     } = props;
@@ -66,14 +63,12 @@ export const AuthCard = props => {
         className,
         children,
         notification,
-        // staticContext,
         backgroundImage,
         ...rest
     } = props;
 
     const classes = useStyles(props);
     const containerRef = useRef<HTMLDivElement>(null);
-
     let backgroundImageLoaded = false;
 
     const updateBackgroundImage = () => {
@@ -123,7 +118,6 @@ AuthLayout.propTypes = {
     classes: PropTypes.object,
     className: PropTypes.string,
     theme: PropTypes.object,
-    // staticContext: PropTypes.object,
 };
 
 AuthLayout.defaultProps = {

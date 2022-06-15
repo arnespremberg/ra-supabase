@@ -1,11 +1,13 @@
 import * as React from 'react';
-import { RouteWithoutLayout } from 'ra-core';
+import { CustomRoutes } from 'ra-core';
+import { Route } from 'react-router';
 import { SetPasswordPage } from './SetPasswordPage';
 
 export const authRoutes = [
-    <RouteWithoutLayout
-        noLayout
-        path="/set-password"
-        render={() => <SetPasswordPage />}
-    />,
+    <CustomRoutes noLayout>
+        <Route 
+            element={<SetPasswordPage />}
+            path="/set-password"
+        />
+    </CustomRoutes>
 ];
